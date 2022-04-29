@@ -29,7 +29,6 @@ const TotalCount = styled.strong`
 `
 
 function Discover() {
-  // Our state
   const [keyword, setKeyword] = useState("");
   const [year, setYear] = useState(0);
   const [results, setResults] = useState([]);
