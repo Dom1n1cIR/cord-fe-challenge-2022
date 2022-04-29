@@ -30,7 +30,7 @@ const TotalCount = styled.strong`
 
 function Discover() {
   const [keyword, setKeyword] = useState("");
-  const [year, setYear] = useState(0);
+  const [year, setYear] = useState(null);
   const [results, setResults] = useState([]);
   const [movieDetails, setMovieDetails] = useState(null);
   const [totalCount, setTotalCount] = useState(0);

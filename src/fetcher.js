@@ -27,9 +27,9 @@ export const getMovieGenres = async (setGenreOptions) => {
           })
 }
 
-export const getSearchMovie = async (keyword, setResults, setTotalCount) => {
+export const getSearchMovie = async (setKeyword, setResults, setTotalCount, setYear) => {
     await axios
-        .get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${keyword}`)
+        .get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${setKeyword}&year=${setYear}`)
         .then((response) => {
         setResults(response.data.results);
         setTotalCount(response.data.total_results);

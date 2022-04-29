@@ -8,31 +8,6 @@ import SearchBar from "../../components/searchbar";
 import SearchIcon from "../../images/search-icon-yellow.png";
 import YearIcon from "../../images/year-icon.png";
 
-export default function SearchFilters({ genres, ratings, languages, onSearch }) {
-  return (
-    <FiltersWrapper>
-      <SearchFiltersCont className="search_inputs_cont" marginBottom>
-        <SearchBar
-          id="keyword_search_input" 
-          type="text"
-          icon={{ src: SearchIcon, alt: 'Magnifying glass' }} 
-          placeholder="Search for movies"
-        />
-        <SearchBar
-          id="year_search_input" 
-          type="number"
-          icon={{ src: YearIcon, alt: 'Calendar icon' }} 
-          placeholder="Year of release"
-        />
-      </SearchFiltersCont>
-      <SearchFiltersCont>
-        <CategoryTitle>Movies</CategoryTitle>
-        {/* TODO: Complete the "AccordionFilter" component and re-use it for all filter categories */}
-      </SearchFiltersCont>
-    </FiltersWrapper>
-  );
-}
-
 const FiltersWrapper = styled.div`
   position: relative;
 `
@@ -55,3 +30,32 @@ const SearchFiltersCont = styled.div`
 const CategoryTitle = styled.h3`
   margin: 0 0 15px 0;
 `
+
+function SearchFilters({ genres, ratings, languages, searchMovies }) {
+  return (
+    <FiltersWrapper>
+      <SearchFiltersCont className="search_inputs_cont" marginBottom>
+        <SearchBar
+          id="keyword_search_input" 
+          type="text"
+          icon={{ src: SearchIcon, alt: 'Magnifying glass' }}
+          searchMovies={searchMovies}
+          placeholder="Search for movies"
+        />
+        <SearchBar
+          id="year_search_input" 
+          type="number"
+          icon={{ src: YearIcon, alt: 'Calendar icon' }} 
+          searchMovies={searchMovies}
+          placeholder="Year of release"
+        />
+      </SearchFiltersCont>
+      <SearchFiltersCont>
+        <CategoryTitle>Movies</CategoryTitle>
+        {/* TODO: Complete the "AccordionFilter" component and re-use it for all filter categories */}
+      </SearchFiltersCont>
+    </FiltersWrapper>
+  );
+}
+
+export default SearchFilters;

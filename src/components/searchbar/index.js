@@ -1,16 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 
 import * as colors from "../../colors";
-
-export default function SearchBar ({ icon, id, type, placeholder, onChange }) {
-  return (
-    <InputWrapper className="search_bar_wrapper">
-      <img src={icon.src} alt={icon.alt} htmlFor={id} width="25" />
-      <input type={type} id={id} onChange={e => onChange(e.target.value)} placeholder={placeholder} />
-    </InputWrapper>
-  );
-}
 
 const InputWrapper = styled.div`
   display: flex;
@@ -35,3 +26,30 @@ const InputWrapper = styled.div`
     }
   }
 `
+
+function SearchBar ({ icon, id, type, placeholder, searchMovies }) {
+  const [keyword, setKeyword] = useState("");
+  const [year, setYear] = useState(null);
+  const isMobile = false;
+
+  useEffect(() => {
+    searchMovies(keyword, year);
+  }, [keyword, year]);
+
+  const handleWordSearch = (event) => {
+    console.log(event);
+    if (event.target === 'year_search_input') {
+      setYear(event.target.value); 
+    }
+      setKeyword(event.target.value);
+  };
+
+  return (
+    <InputWrapper className="search_bar_wrapper">
+      <img src={icon.src} alt={icon.alt} htmlFor={id} width="25" />
+      <input type={type} id={id} onChange={handleWordSearch} placeholder={placeholder} />
+    </InputWrapper>
+  );
+}
+
+export default SearchBar;
