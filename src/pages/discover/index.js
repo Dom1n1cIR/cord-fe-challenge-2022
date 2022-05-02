@@ -55,8 +55,7 @@ function Discover() {
     fetcher.getPopularMovies(setResults, setTotalCount)
     fetcher.getMovieGenres(setGenreOptions);
   }, [])
-  console.log(results);
-  console.log(genreOptions)
+
   // TODO: Update search results based on the keyword and year inputs
   const searchMovies = async (keyword, year) => {
     if (keyword === "") {

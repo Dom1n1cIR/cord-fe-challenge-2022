@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
 import Checkbox from '../checkbox/index';
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 const ExpandableFiltersWrapper = styled.div`
   padding-bottom: 15px;
@@ -9,6 +10,7 @@ const ExpandableFiltersWrapper = styled.div`
 const ExpandableFiltersTitleCont = styled.div`
   display: flex;
   font-weight: 700;
+  cursor: pointer;
 `;
 
 const ExpandableFiltersTitle = styled.span`
@@ -16,7 +18,7 @@ const ExpandableFiltersTitle = styled.span`
 `;
 
 const ExpandableFiltersOptions = styled.div`
-  ${(props) => (props.isOpen ? "" : `display:none`)}
+  ${(props) => (props.isOpen ? "" : "display:none")};
   padding-top: 20px;
 `;
 
@@ -24,9 +26,6 @@ const OptionsChecboxWrapper = styled.div`
   padding-bottom: 10px;
 `;
 
-const IconWrapper = styled.span`
-  padding-bottom: 10px;
-`;
 export default function AccordionFilter ({ options, title }) {
     const [filtersShown, setFilterShown] = useState(false);
 
@@ -38,16 +37,15 @@ export default function AccordionFilter ({ options, title }) {
       if (options === undefined || options === []) return false;
       return true;
     };
-
     return (
         <>
             {isOptionsDefined(options) && (
               <ExpandableFiltersWrapper title="expandable-filters">
-                <ExpandableFiltersTitleCont>
+                <ExpandableFiltersTitleCont onClick={handleOnClickChange}>
                   {filtersShown ? (
-                    <IconWrapper onClick={handleOnClickChange} size={"1.3em"}>-</IconWrapper>
+                    <AiOutlineMinus onClick={handleOnClickChange} size={"1.3em"} />
                   ) : (
-                    <IconWrapper onClick={handleOnClickChange} size={"1.3em"}>+</IconWrapper>
+                    <AiOutlinePlus onClick={handleOnClickChange} size={"1.3em"} />
                   )}
                   <ExpandableFiltersTitle> Select {title}</ExpandableFiltersTitle>
                 </ExpandableFiltersTitleCont>

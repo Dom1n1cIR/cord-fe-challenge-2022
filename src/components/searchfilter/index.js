@@ -52,8 +52,9 @@ function SearchFilters({ genres, ratings, languages, searchMovies }) {
       </SearchFiltersCont>
       <SearchFiltersCont>
         <CategoryTitle>Movies</CategoryTitle>
-        {/* TODO: Complete the "AccordionFilter" component and re-use it for all filter categories */}
-        <AccordionFilter />
+          <AccordionFilter options={genres} title="Genre(s)"/>
+          <AccordionFilter options={ratings} title="Min. vote"/>
+          <AccordionFilter options={languages} title="Languages"/>
       </SearchFiltersCont>
     </FiltersWrapper>
   );
