@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
-
+import { useMediaQuery } from "react-responsive";
 import * as colors from "../../colors";
+import FilterIcon from "../../images/filter-icon.png";
 
 const InputWrapper = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ const InputWrapper = styled.div`
 function SearchBar ({ icon, id, type, placeholder, searchMovies }) {
   const [keyword, setKeyword] = useState("");
   const [year, setYear] = useState(null);
-  const isMobile = false;
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   useEffect(() => {
     searchMovies(keyword, year);
@@ -48,6 +49,7 @@ function SearchBar ({ icon, id, type, placeholder, searchMovies }) {
     <InputWrapper className="search_bar_wrapper">
       <img src={icon.src} alt={icon.alt} htmlFor={id} width="25" />
       <input type={type} id={id} onChange={handleWordSearch} placeholder={placeholder} />
+      {isMobile ? <img src={FilterIcon} alt="Filter" /> : null}
     </InputWrapper>
   );
 }

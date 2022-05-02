@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from 'styled-components';
-
+import { useMediaQuery } from "react-responsive";
 import * as colors from "../../colors";
 import AccordionFilter from "../accordionfilter";
 import SearchBar from "../../components/searchbar";
@@ -25,6 +25,12 @@ const SearchFiltersCont = styled.div`
   ${props => props.marginBottom && css`
     margin-bottom: 15px;
   `}
+
+  @media screen and (max-width: 768px) {
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+  }
 `
 
 const CategoryTitle = styled.h3`
@@ -32,6 +38,7 @@ const CategoryTitle = styled.h3`
 `
 
 function SearchFilters({ genres, ratings, languages, searchMovies }) {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   return (
     <FiltersWrapper>
       <SearchFiltersCont className="search_inputs_cont" marginBottom>
@@ -42,20 +49,20 @@ function SearchFilters({ genres, ratings, languages, searchMovies }) {
           searchMovies={searchMovies}
           placeholder="Search for movies"
         />
-        <SearchBar
+        { isMobile ? null : <SearchBar
           id="year_search_input" 
           type="number"
           icon={{ src: YearIcon, alt: 'Calendar icon' }} 
           searchMovies={searchMovies}
           placeholder="Year of release"
-        />
+        />}
       </SearchFiltersCont>
-      <SearchFiltersCont>
+      { isMobile ? null : <SearchFiltersCont>
         <CategoryTitle>Movies</CategoryTitle>
           <AccordionFilter options={genres} title="Genre(s)"/>
           <AccordionFilter options={ratings} title="Min. vote"/>
           <AccordionFilter options={languages} title="Languages"/>
-      </SearchFiltersCont>
+      </SearchFiltersCont>}
     </FiltersWrapper>
   );
 }

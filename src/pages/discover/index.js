@@ -9,15 +9,26 @@ import MovieList from "../../components/movielist";
 
 const DiscoverWrapper = styled.main`
   padding: 35px;
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
 `
 const MovieResults = styled.div`
   display: inline-block;
   width: calc(100% - 295px);
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `
 const MovieFilters = styled.div`
   width: 280px;
   float: right;
   margin-top: 15px;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    float: none;
+    margin-top: 0;
+  }
 `
 const MobilePageTitle = styled.h1`
   display: none;
@@ -69,7 +80,7 @@ function Discover() {
     <>
       <DiscoverWrapper>
         <MobilePageTitle>Discovexr</MobilePageTitle> {/* MobilePageTitle should become visible on mobile devices via CSS media queries*/}
-        <TotalCount>{totalCount} results</TotalCount>
+        <TotalCount>{totalCount} movies</TotalCount>
         <MovieFilters>
           <SearchFilters 
             genres={genreOptions} 
