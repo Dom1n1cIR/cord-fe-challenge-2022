@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from 'styled-components';
 
 import * as colors from "../../colors";
-import ExpandableFilter from "../accordionfilter";
+import AccordionFilter from "../accordionfilter";
 import SearchBar from "../../components/searchbar";
 
 import SearchIcon from "../../images/search-icon-yellow.png";
@@ -53,6 +53,7 @@ function SearchFilters({ genres, ratings, languages, searchMovies }) {
       <SearchFiltersCont>
         <CategoryTitle>Movies</CategoryTitle>
         {/* TODO: Complete the "AccordionFilter" component and re-use it for all filter categories */}
+        <AccordionFilter />
       </SearchFiltersCont>
     </FiltersWrapper>
   );
