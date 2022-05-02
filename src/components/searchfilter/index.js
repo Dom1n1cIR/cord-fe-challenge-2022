@@ -20,6 +20,13 @@ const SearchFiltersCont = styled.div`
 
   .search_bar_wrapper:first-child {
     margin-bottom: 15px;
+
+    @media screen and (max-width: 768px) {
+      width: 85%;
+      padding-bottom: 8px;
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
   }
   
   ${props => props.marginBottom && css`
@@ -30,6 +37,8 @@ const SearchFiltersCont = styled.div`
     background-color: transparent;
     padding-left: 0;
     padding-right: 0;
+    display: flex;
+    flex-direction: row;
   }
 `
 

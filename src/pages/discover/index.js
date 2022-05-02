@@ -30,13 +30,21 @@ const MovieFilters = styled.div`
     margin-top: 0;
   }
 `
-const MobilePageTitle = styled.h1`
-  display: none;
+
+const MobileWrapper = styled.div`
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 `
+
 const TotalCount = styled.strong`
   display: block;
   padding-bottom: 15px;
   font-weight: normal;
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
 `
 
 function Discover() {
@@ -79,16 +87,17 @@ function Discover() {
   return (
     <>
       <DiscoverWrapper>
-        <MobilePageTitle>Discovexr</MobilePageTitle> {/* MobilePageTitle should become visible on mobile devices via CSS media queries*/}
+        <MobileWrapper>
         <TotalCount>{totalCount} movies</TotalCount>
-        <MovieFilters>
-          <SearchFilters 
-            genres={genreOptions} 
-            ratings={ratingOptions}  
-            languages={languageOptions}
-            searchMovies={(keyword, year) => searchMovies(keyword, year)}
-          />
-        </MovieFilters>
+          <MovieFilters>
+            <SearchFilters 
+              genres={genreOptions} 
+              ratings={ratingOptions}  
+              languages={languageOptions}
+              searchMovies={(keyword, year) => searchMovies(keyword, year)}
+            />
+          </MovieFilters>
+        </MobileWrapper>
         <MovieResults>
           <MovieList 
             movies={results || []}

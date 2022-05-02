@@ -25,6 +25,14 @@ const InputWrapper = styled.div`
       color: ${colors.primaryColor};
       font-weight: 300;
     }
+    @media screen and (max-width: 768px) {
+      
+      .mobileFilterIcon {
+        display: inline-block;
+        margin-left: 10px;
+        padding-bottom: 8px;
+      }
+    }
   }
 `
 
@@ -38,7 +46,6 @@ function SearchBar ({ icon, id, type, placeholder, searchMovies }) {
   }, [keyword, year]);
 
   const handleWordSearch = (event) => {
-    console.log(event);
     if (event.target === 'year_search_input') {
       setYear(event.target.value); 
     }
@@ -46,11 +53,15 @@ function SearchBar ({ icon, id, type, placeholder, searchMovies }) {
   };
 
   return (
+    <>
     <InputWrapper className="search_bar_wrapper">
       <img src={icon.src} alt={icon.alt} htmlFor={id} width="25" />
       <input type={type} id={id} onChange={handleWordSearch} placeholder={placeholder} />
-      {isMobile ? <img src={FilterIcon} alt="Filter" /> : null}
     </InputWrapper>
+    <InputWrapper className="mobileFilterContainer">
+      {isMobile ? <img className="mobileFilterIcon" src={FilterIcon} alt="Filter" /> : null}
+    </InputWrapper>
+    </>
   );
 }
 
