@@ -10,7 +10,7 @@ const SideNavBarCont = styled.div`
   position: fixed;
   z-index: 9;
   top: 0;
-  width: 280px;
+  width: 260px;
   height: 100%;
   background-color: ${colors.sideNavBar};
   color: white;
@@ -45,9 +45,6 @@ const SideNavMainLink = styled(Link)`
 
 const SideNavHeader = styled.div`
   ${SectionsStyles}
-  @media screen and (max-with: 768px) {
-    margin-top: 25px;
-  }
 `;
 
 const SideNavSectionTitle = styled.div`
@@ -95,6 +92,7 @@ const NavigationTitle = styled.h1`
   padding-left: 15px;
   @media screen and (max-width: 768px) {
     font-weight: normal;
+    padding-left: 25px;
   }
 `;
 
@@ -124,7 +122,7 @@ export default function SideNavBar ({active, closeMenu}) {
   return (
     <>
     <MobileNavigation>
-      <AiOutlineMenu size={"3em"} color={colors.sideNavBar} onClick={handleMenuOpen}/>
+      <AiOutlineMenu size={"2.5em"} color={colors.sideNavBar} onClick={handleMenuOpen}/>
       <NavigationTitle>Discover</NavigationTitle>
     </MobileNavigation>
     <SideNavBarCont isVisible={activeSideBar}>

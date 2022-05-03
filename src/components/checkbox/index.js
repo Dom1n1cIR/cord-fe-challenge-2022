@@ -26,4 +26,5 @@ const CheckboxWrapper = styled.div`
 const InputCheck = styled.input`
   width: 15px;
   height: 15px;
+  cursor: pointer;
 `;

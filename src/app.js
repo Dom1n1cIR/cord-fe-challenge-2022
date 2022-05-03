@@ -27,7 +27,7 @@ export default class App extends React.Component {
 
 
 const ContentWrapper = styled.main`
-  padding-left: 280px;
+  padding-left: 260px;
   @media screen and (max-width: 768px) {
     padding: 0 25px;
   }

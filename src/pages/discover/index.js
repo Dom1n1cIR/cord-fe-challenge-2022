@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
-
-import * as colors from "../../colors";
 import * as fetcher from "../../fetcher";
 
 import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
 
 const DiscoverWrapper = styled.main`
-  padding: 35px;
+  padding: 35px 45px;
+  @media screen and (max-width: 900px) {
+    padding: 35px 25px;
+  }
   @media screen and (max-width: 768px) {
     padding: 0;
   }
@@ -23,7 +24,6 @@ const MovieResults = styled.div`
 const MovieFilters = styled.div`
   width: 280px;
   float: right;
-  margin-top: 15px;
   @media screen and (max-width: 768px) {
     width: 100%;
     float: none;
@@ -48,10 +48,7 @@ const TotalCount = styled.strong`
 `
 
 function Discover() {
-  const [keyword, setKeyword] = useState("");
-  const [year, setYear] = useState(null);
   const [results, setResults] = useState([]);
-  const [movieDetails, setMovieDetails] = useState(null);
   const [totalCount, setTotalCount] = useState(0);
   const [genreOptions, setGenreOptions] = useState([]);
   const [ratingOptions, setRatingOptions] = useState([
@@ -77,10 +74,10 @@ function Discover() {
 
   // TODO: Update search results based on the keyword and year inputs
   const searchMovies = async (keyword, year) => {
-    if (keyword === "") {
+    if (keyword === null && year === null) {
       fetcher.getPopularMovies(setResults, setTotalCount);
     } else {
-      fetcher.getSearchMovie(keyword, setResults, setTotalCount);
+      fetcher.getSearchMovie(keyword, setResults, setTotalCount, year);
     }
   };
 

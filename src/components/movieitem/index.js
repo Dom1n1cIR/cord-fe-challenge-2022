@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import placeHolder from '../../images/no-poster-holder.jpeg';
+import { useMediaQuery } from "react-responsive";
 
 const MovieItemWrapper = styled.div`
   position: relative;
@@ -58,6 +59,8 @@ const MovieGenres = styled.div`
 const MovieReleaseDate = styled.div`
   color: #d9e021;
   font-weight: 300;
+  position: absolute;
+  bottom: 0;
 `;
 
 const MovieHeader = styled.div`
@@ -67,12 +70,11 @@ const MovieHeader = styled.div`
 `;
 
 function MovieItem ({ title, genre, overview, releaseDate, voteAverage, backdropPath, posterPath }) {
-  const isMobile = false;
-  const cutText = (text) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const truncateText = (text) => {
     return text.substring(1, 150);
   };
   return (
-    // TODO: Complete the MovieItem component
     <MovieItemWrapper>
       <LeftCont>
         <PosterImage src={posterPath ? `http://image.tmdb.org/t/p/w500${posterPath}` : placeHolder} alt="Poster Image"/>
@@ -91,7 +93,7 @@ function MovieItem ({ title, genre, overview, releaseDate, voteAverage, backdrop
             );
           })}
         </MovieGenres>
-        <p>{isMobile ? cutText(overview) : overview}</p>
+        <p>{isMobile ? `${truncateText(overview)}...` : overview}</p>
         <MovieReleaseDate>{releaseDate}</MovieReleaseDate>
       </RightCont>
     </MovieItemWrapper>

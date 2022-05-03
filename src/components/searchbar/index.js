@@ -37,30 +37,31 @@ const InputWrapper = styled.div`
 `
 
 function SearchBar ({ icon, id, type, placeholder, searchMovies }) {
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState(null);
   const [year, setYear] = useState(null);
   const isMobile = useMediaQuery({ maxWidth: 767 });
+  
+  const handleChange = (event) => {
+    if (type === 'number') {
+      setYear(event.target.value); 
+    } else {
+      setKeyword(event.target.value);
+    }
+  };
 
   useEffect(() => {
     searchMovies(keyword, year);
   }, [keyword, year]);
-
-  const handleWordSearch = (event) => {
-    if (event.target === 'year_search_input') {
-      setYear(event.target.value); 
-    }
-      setKeyword(event.target.value);
-  };
-
+  
   return (
     <>
     <InputWrapper className="search_bar_wrapper">
       <img src={icon.src} alt={icon.alt} htmlFor={id} width="25" />
-      <input type={type} id={id} onChange={handleWordSearch} placeholder={placeholder} />
+      <input type={type} id={id} onChange={handleChange} placeholder={placeholder} />
     </InputWrapper>
-    <InputWrapper className="mobileFilterContainer">
-      {isMobile ? <img className="mobileFilterIcon" src={FilterIcon} alt="Filter" /> : null}
-    </InputWrapper>
+    { isMobile ? <InputWrapper >
+    <img className="mobileFilterIcon" src={FilterIcon} alt="Filter" />
+    </InputWrapper> : null }
     </>
   );
 }
